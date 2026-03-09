@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PC比較表</title>
+
+<link rel="stylesheet"
+href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<style>
+body{font-family:sans-serif;margin:40px;}
+h1{margin-bottom:20px;}
+table{font-size:14px;}
+</style>
+
+</head>
+<body>
+
+<h1>PC比較表</h1>
+
+<table id="pcTable" class="display" style="width:100%"></table>
+
+<script>
+
+let data = [[1, "ASUS Gaming V16", "展示品特価", "Core 7 240H", 24373, "S", "RTX 4050 Laptop", 14330, "B", 16, "SSD 512GB", 158800, 38703, 0.24, NaN, NaN], [2, "ASUS TUF Gaming A15", "展示品特価", "Ryzen 7 7435HS", 22966, "S", "RTX 3050 Laptop", 12003, "B", 16, "SSD 1TB", 111800, 34969, 0.31, "DDR5 / 15.6インチ", NaN], [3, "ASUS Vivobook Pro 15 OLED M3500Q", "OFFモール中古", "Ryzen 9 5900HX", 22110, "S", "Radeon Graphics ", 2957, "D", 8, "SSD 512GB", 55000, 25067, 0.45, NaN, NaN], [4, "Dell XPS 8920", "地元の中古", "Core i7-8700", 12748, "B", "GT 1030", 2402, "D", 24, "SSD 250GB", 39900, 15150, 0.37, NaN, NaN], [5, "Diginnos", "地元の中古", "Core i5-6500U", 2989, "D", "GTX 1650", 7873, "C", 8, "SSD 256GB + HDD 1000GB", 21900, 10862, 0.49, NaN, "FF15 5467"], [6, "Dynabook", "OFFモール中古", "Core i7-1165G7", 9823, "B", "Intel Iris Xe Graphics", 2610, "D", 16, "SSD 512GB", 69300, 12433, 0.17, NaN, NaN], [7, "FRONTIER GN Series", "ジャンク", "Core i7-7700", 8643, "C", "GTX 1050Ti", 6359, "C", 8, "SSD 256GB", 22000, 15002, 0.68, "Escキー欠損", NaN], [8, "Fujitsu LIFEBOOK", "ジャンク", "Core i7-6700HQ", 6523, "C", "Intel HD Graphics 530", 990, "E", 16, "SSD 1TB", 24000, 7513, 0.31, "うp主元所有機", NaN], [9, "GALLERIA", "地元の中古", "Core i5-12400", 18786, "A", "GTX 1660 SUPER", 12683, "B", 16, "SSD 512GB + HDD 1000GB", 99900, 31469, 0.31, NaN, "FF15 14040"], [10, "GALLERIA", "地元の中古", "Core i7-10700", 16035, "A", "RTX 2070 SUPER", 18146, "A", 32, "SSD 512GB + HDD 2000GB", 134900, 34181, 0.25, NaN, "FF15 12776"], [11, "GALLERIA", "地元の中古", "Core i7-11700", 20645, "S", "RTX 3070", 22133, "S", 32, "SSD 512GB", 159000, 42778, 0.26, NaN, "FF15 15472"], [12, "HP ProBook 470G3", "ジャンク", "Core i3-6100U", 2628, "D", "Intel HD Graphics 520", 860, "E", 8, "SSD 480GB", 11900, 3488, 0.29, "スピーカー不良、天板劣化", NaN], [13, "HP ProDesk 405 G6", "ハドフ中古", "Ryzen 5 PRO 4650G", 16041, "A", "Radeon Graphics", 2375, "D", 32, "SSD 256GB", 33000, 18416, 0.55, "小型デスクトップ", NaN], [14, "Lenovo ThinkPad E16 Gen1", "OFFモール中古", "Ryzen 5 7430U", 15723, "A", "Radeon RX Vega 7？", 2270, "D", 16, "SSD 256GB", 66000, 17993, 0.27, NaN, NaN], [15, "Lenovo ThinkPad P1 Gen2", "OFFモール中古", "Core i7‑9750H", 10591, "B", "Intel UHD Graphics 630", 1228, "E", 32, "SSD 1TB", 59400, 11819, 0.19, NaN, NaN], [16, "Lenovo ThinkPad X13 Gen1", "ゲオモバイル", "Ryzen 5 PRO 4650U", 12058, "B", "Radeon Graphics ", 1690, "E", 32, "SSD 256GB", 40000, 13748, 0.34, "うp主所有機", NaN], [17, "LEVEL∞ (iiyama)", "地元の中古", "Ryzen 5 5600X", 21843, "S", "RTX 2080 Ti", 21478, "S", 32, "SSD 500GB", 98000, 43321, 0.44, NaN, "FF15 16152"], [18, "mouse K5", "ジャンク", "Core i7-10750H", 11480, "B", "MX 350", 2820, "D", 16, "SSD 512GB", 35200, 14300, 0.4, "ディスプレイ映らず、外部モニター必須", NaN], [19, "MSI Katana GF76 11UD‑671JP", "OFFモール中古", "Core i7‑11800H", 19741, "A", "RTX 3050 Ti", 15000, "A", 16, "SSD 512GB", 88000, 34741, 0.39, NaN, NaN], [20, "MSI Thin-15", "直販サイト限定", "Core i7-13620H", 23519, "S", "RTX 3050 Laptop", 12003, "B", 32, "SSD 1TB", 159800, 35522, 0.22, NaN, NaN], [21, "NEWLEAGUE系", "地元の中古", "Ryzen 5 5600G", 19676, "A", "RTX 4060", 19530, "A", 16, "SSD 512GB", 129000, 39206, 0.3, NaN, "FF15 13980"], [22, "TUF GAMING 自作PC", "OFFモール中古", "Core i7‑8700", 12748, "B", "Radeon RX 6600", 15075, "A", 16, "SSD 1TB", 60500, 27823, 0.45, NaN, NaN], [23, "自作 / BTO", "地元の中古", "Core i7-6700", 8039, "C", "GTX 970", 9638, "C", 16, "SSD 240GB + HDD 320GB", 36900, 17677, 0.47, NaN, "FF15 5900"], [24, "自作 / BTO", "地元の中古", "Core i7-4770", 7065, "C", "GTX 1060 3GB", 9831, "C", 8, "SSD 640GB", 25000, 16896, 0.67, NaN, "FF15 6408"], [25, "自作 / BTO", "ハドフ中古", "Core i7-11700", 20645, "S", "RTX2060", 14103, "B", 32, "SSD 2TB", 110000, 34748, 0.31, NaN, NaN], [26, "自作 / BTO", "ハドフ中古", "Core i5-10600T", 11540, "B", "Intel UHD Graphics 630", 1228, "E", 32, "SSD 128GB", 44000, 12768, 0.29, "Wi-Fiなし", NaN]];
+let columns = [{"title": "No"}, {"title": "メーカー/モデル"}, {"title": "販売状態"}, {"title": "CPU"}, {"title": "CPUスコア"}, {"title": "CPUランク"}, {"title": "GPU"}, {"title": "GPUスコア"}, {"title": "GPUランク"}, {"title": "メモリGB"}, {"title": "ストレージ"}, {"title": "価格"}, {"title": "総合スコア"}, {"title": "コスパ指数"}, {"title": "備考"}, {"title": "ベンチ結果"}];
+
+$(document).ready(function(){
+
+$('#pcTable').DataTable({
+data:data,
+columns:columns,
+pageLength:50,
+order:[]
+});
+
+});
+
+</script>
+
+</body>
+</html>
